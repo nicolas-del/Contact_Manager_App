@@ -8,11 +8,31 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <DockPanel>
-            <ListBox>
-                <ListBoxItem>
-
-                </ListBoxItem>
-            </ListBox>
+            <StackPanel DockPanel.Dock="Right">
+                <Button x:Name="AddContact" Content="Add New Contact" Margin="5,20,5,0" Click="AddContact_Button"/>
+                <Button x:Name="ViewContact" Content="View Contact" Margin="5,20,5,0" Click="ViewContact_Button"/>
+                <Button x:Name="EditContact" Content="Edit Contact" Margin="5,20,5,0" Click="EditContact_Button"/>
+                <Button x:Name="DeleteContact" Content="Delete Contact" Margin="5,20,5,0" Click="DeleteContact_Button"/>
+            </StackPanel>
+            <ListView Margin="10" x:Name="lvDataBinding" SelectionMode="Single" SelectionChanged="lvDataBinding_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Text="Name: "/>
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                            <TextBlock Text=", "/>
+                            <TextBlock Text="Phone Number: "/>
+                            <TextBlock Text="{Binding PhoneNumber}" FontWeight="Bold"/>
+                            <TextBlock Text=", "/>
+                            <TextBlock Text="Address: "/>
+                            <TextBlock Text="{Binding Address}" FontWeight="Bold"/>
+                            <TextBlock Text=", "/>
+                            <TextBlock Text="Birthday: "/>
+                            <TextBlock Text="{Binding Birthday}" FontWeight="Bold"/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </DockPanel>
     </Grid>
 </Window>

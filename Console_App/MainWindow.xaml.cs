@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,36 @@ namespace Console_App
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        ObservableCollection<Contact> ContactList = new ObservableCollection<Contact>;
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void AddContact_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ViewContact_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditContact_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteContact_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void lvDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

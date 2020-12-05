@@ -13,8 +13,25 @@ namespace Console_App
         string ConString = ConfigurationManager.ConnectionStrings["ContactConn"].ConnectionString;
         
 
-        public List<Contact> DeleteContact(Contact contact)
+        public void AddContact(Contact contact) 
         {
+            
+        }
+
+
+        public void ViewContact(Contact contact) 
+        {
+        
+        }
+
+        public void EditContact(Contact contact) 
+        {
+            
+        }
+
+        public void DeleteContact(Contact contact)
+        {
+
         }
     }
 }

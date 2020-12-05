@@ -19,9 +19,23 @@ namespace Console_App
     /// </summary>
     public partial class AddContactWindow : Window
     {
+        Contact contact;
+
+        ContactHandler contactHandler = new ContactHandler();
+
         public AddContactWindow()
         {
             InitializeComponent();
+
+            contact.Name = nameTextBlock.Text;
+            contact.PhoneNumber = phoneNumberTextBlock.Text;
+            contact.Address = addressTextBlock.Text;
+            contact.Birthday = birthdayTextBlock.Text;
+        }
+
+        private void Create_Contact(object sender, RoutedEventArgs e)
+        {
+            contactHandler.AddContact(contact);
         }
     }
 }

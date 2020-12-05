@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="ViewContactWindow" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel Margin="10">
+            <Label Content="Add New Contact Window" 
+                   FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+            <TextBlock x:Name="nameTextBlock"/>
+            <TextBlock x:Name="phoneNumberTextBlock"/>
+            <TextBlock x:Name="addressTextBlock"/>
+            <TextBlock x:Name="birthdayTextBlock"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -14,7 +14,7 @@ namespace Console_App {
 
                 SqlCommand command = new SqlCommand(query, con);
 
-                command.Parameters.AddWithValue("@Name", contact.Name);
+                command.Parameters.AddWithValue("@Name", contact.Name); 
                 command.Parameters.AddWithValue("@Phone_Number", contact.PhoneNumber);
                 command.Parameters.AddWithValue("@Address", contact.Address);
                 command.Parameters.AddWithValue("@Birthday", contact.Birthday);

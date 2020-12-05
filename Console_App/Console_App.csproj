@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ContactHandler.cs" />
     <Compile Include="DeleteContactWindow.xaml.cs">
       <DependentUpon>DeleteContactWindow.xaml</DependentUpon>
     </Compile>
@@ -89,7 +90,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Contact.cs" />
-    <Compile Include="ContactHandler.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

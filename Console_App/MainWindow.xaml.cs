@@ -22,10 +22,15 @@ namespace Console_App
     public partial class MainWindow : Window
     {
 
-        ObservableCollection<Contact> ContactList = new ObservableCollection<Contact>;
+        ObservableCollection<Contact> ContactList = new ObservableCollection<Contact>();
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void lvDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
         private void AddContact_Button(object sender, RoutedEventArgs e)
@@ -44,11 +49,6 @@ namespace Console_App
         }
 
         private void DeleteContact_Button(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void lvDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

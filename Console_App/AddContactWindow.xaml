@@ -1,0 +1,19 @@
+﻿<Window x:Class="Console_App.AddContactWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Console_App"
+        mc:Ignorable="d"
+        Title="AddContactWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel Margin="10">
+            <Label Content="Add New Contact Window" 
+                   FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+            <TextBlock x:Name="nameTextBlock"/>
+            <TextBlock x:Name="phoneNumberTextBlock"/>
+            <TextBlock x:Name="addressTextBlock"/>
+            <TextBlock x:Name="birthdayTextBlock"/>
+        </StackPanel>
+    </Grid>
+</Window>

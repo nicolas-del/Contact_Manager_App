@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace Console_App {
     public class ContactHandler {
@@ -20,9 +21,9 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Birthday", contact.Birthday);
 
                 if (command.ExecuteNonQuery() >= 1)
-                    Console.WriteLine("Successfully added new contact!");
+                    MessageBox.Show("Successfully added new contact!");
                 else
-                    Console.WriteLine("ERROR: Couldn't add new contact!");
+                    MessageBox.Show("ERROR: Couldn't add new contact!");
 
                 con.Close();
             }
@@ -65,9 +66,9 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Birthday", contact.Birthday);
 
                 if (command.ExecuteNonQuery() >= 1)
-                    Console.WriteLine("Successfully edited contact!");
+                    MessageBox.Show("Successfully edited contact!");
                 else
-                    Console.WriteLine("ERROR: Couldn't edit contact!");
+                    MessageBox.Show("ERROR: Couldn't edit contact!");
 
                 con.Close();
             }
@@ -84,9 +85,9 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Id", contact.Id);
 
                 if (command.ExecuteNonQuery() >= 1)
-                    Console.WriteLine("Successfully deleted contact!");
+                    MessageBox.Show("Successfully deleted contact!");
                 else
-                    Console.WriteLine("ERROR: Couldn't delete contact!");
+                    MessageBox.Show("ERROR: Couldn't delete contact!");
 
                 con.Close();
             }

@@ -29,7 +29,25 @@ namespace Console_App {
         }
 
         public void ViewContact(Contact contact) {
+            using (SqlConnection con = new SqlConnection(ConString)) {
+                con.Open();
 
+                string query = "SELECT * FROM ContactList";
+
+                SqlCommand command = new SqlCommand(query, con);
+
+                using (SqlDataReader reader = command.ExecuteReader()) {
+                    while (reader.Read()) {
+                        if (Int32.TryParse(reader["Id"].ToString(), out int id)) {
+                            contact.Id = id;
+                        }
+                        contact.Name = reader["Name"].ToString();
+                        contact.PhoneNumber = reader["Phone_Number"].ToString();
+                        contact.Address = reader["Address"].ToString();
+                        contact.Birthday = reader["Birthday"].ToString();
+                    }
+                }
+            }
         }
 
         public void EditContact(Contact contact) {

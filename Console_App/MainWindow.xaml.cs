@@ -35,7 +35,8 @@ namespace Console_App
 
         private void AddContact_Button(object sender, RoutedEventArgs e)
         {
-
+            AddContactWindow acw = new AddContactWindow();
+            acw.Show();
         }
 
         private void ViewContact_Button(object sender, RoutedEventArgs e)

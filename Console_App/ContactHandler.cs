@@ -14,7 +14,7 @@ namespace Console_App {
 
                 SqlCommand command = new SqlCommand(query, con);
 
-                command.Parameters.AddWithValue("@Name", contact.Name); 
+                command.Parameters.AddWithValue("@Name", contact.Name);
                 command.Parameters.AddWithValue("@Phone_Number", contact.PhoneNumber);
                 command.Parameters.AddWithValue("@Address", contact.Address);
                 command.Parameters.AddWithValue("@Birthday", contact.Birthday);
@@ -38,7 +38,22 @@ namespace Console_App {
         }
 
         public void DeleteContact(Contact contact) {
+            using (SqlConnection con = new SqlConnection(ConString)) {
+                con.Open();
 
+                string query = "DELETE FROM ContactList WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(query, con);
+
+                command.Parameters.AddWithValue("@Id", contact.Id);
+
+                if (command.ExecuteNonQuery() == 1)
+                    Console.WriteLine("Successfully deleted contact!");
+                else
+                    Console.WriteLine("ERROR: Couldn't delete contact!");
+
+                con.Close();
+            }
         }
     }
 }

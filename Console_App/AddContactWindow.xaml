@@ -10,11 +10,11 @@
         <StackPanel Margin="10">
             <Label Content="Add New Contact Window" 
                    FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
-            <TextBlock x:Name="nameTextBlock" Text="Name" FontSize="24"/>
-            <TextBlock x:Name="phoneNumberTextBlock" Text="Phone-Number" FontSize="24"/>
-            <TextBlock x:Name="addressTextBlock" Text="Address" FontSize="24"/>
-            <TextBlock x:Name="birthdayTextBlock" Text="Birthday" FontSize="24"/>
-            <Button x:Name="Create" Content="Create contact" Margin="5,20,5,0" Click="Create_Contact" FontSize="28"/>
+            <TextBox x:Name="nameTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Type the NAME here!"/>
+            <TextBox x:Name="phoneNumberTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Type the PHONE NUMBER here!"/>
+            <TextBox x:Name="addressTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Type the ADDRESS here!"/>
+            <TextBox x:Name="birthdayTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Type the BIRTHDAY here!"/>
+            <Button x:Name="Create" Content="Create contact" Margin="5,20,5,0" Click="Create_Contact" FontSize="28" Width="500"/>
         </StackPanel>
     </Grid>
 </Window>

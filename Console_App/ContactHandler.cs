@@ -21,9 +21,9 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Birthday", contact.Birthday);
 
                 if (command.ExecuteNonQuery() >= 1)
-                    MessageBox.Show("Successfully added new contact!");
+                    MessageBox.Show("Successfully added new contact!", "Confirmation", MessageBoxButton.OK);
                 else
-                    MessageBox.Show("ERROR: Couldn't add new contact!");
+                    MessageBox.Show("ERROR: Couldn't add new contact!", "Confirmation", MessageBoxButton.OK));
 
                 con.Close();
             }
@@ -66,9 +66,9 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Birthday", contact.Birthday);
 
                 if (command.ExecuteNonQuery() >= 1)
-                    MessageBox.Show("Successfully edited contact!");
+                    MessageBox.Show("Successfully edited contact!", "Confirmation", MessageBoxButton.OK));
                 else
-                    MessageBox.Show("ERROR: Couldn't edit contact!");
+                    MessageBox.Show("ERROR: Couldn't edit contact!", "Confirmation", MessageBoxButton.OK));
 
                 con.Close();
             }
@@ -85,9 +85,9 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Id", contact.Id);
 
                 if (command.ExecuteNonQuery() >= 1)
-                    MessageBox.Show("Successfully deleted contact!");
+                    MessageBox.Show("Successfully deleted contact!", "Confirmation", MessageBoxButton.OK));
                 else
-                    MessageBox.Show("ERROR: Couldn't delete contact!");
+                    MessageBox.Show("ERROR: Couldn't delete contact!", "Confirmation", MessageBoxButton.OK));
 
                 con.Close();
             }

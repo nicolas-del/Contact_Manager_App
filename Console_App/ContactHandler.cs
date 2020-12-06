@@ -19,8 +19,7 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Address", contact.Address);
                 command.Parameters.AddWithValue("@Birthday", contact.Birthday);
 
-                int count = command.ExecuteNonQuery();
-                if (count == 1)
+                if (command.ExecuteNonQuery() >= 1)
                     Console.WriteLine("Successfully added new contact!");
                 else
                     Console.WriteLine("ERROR: Couldn't add new contact!");
@@ -34,7 +33,26 @@ namespace Console_App {
         }
 
         public void EditContact(Contact contact) {
+            using (SqlConnection con = new SqlConnection(ConString)) {
+                con.Open();
 
+                string query = "UPDATE ContactList SET Name = @Name, Phone_Number = @Phone_Number, Address = @Address, Birthday = @Birthday WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(query, con);
+
+                command.Parameters.AddWithValue("@Id", contact.Id);
+                command.Parameters.AddWithValue("@Name", contact.Name);
+                command.Parameters.AddWithValue("@Phone_Number", contact.PhoneNumber);
+                command.Parameters.AddWithValue("@Address", contact.Address);
+                command.Parameters.AddWithValue("@Birthday", contact.Birthday);
+
+                if (command.ExecuteNonQuery() >= 1)
+                    Console.WriteLine("Successfully edited contact!");
+                else
+                    Console.WriteLine("ERROR: Couldn't edit contact!");
+
+                con.Close();
+            }
         }
 
         public void DeleteContact(Contact contact) {
@@ -47,7 +65,7 @@ namespace Console_App {
 
                 command.Parameters.AddWithValue("@Id", contact.Id);
 
-                if (command.ExecuteNonQuery() == 1)
+                if (command.ExecuteNonQuery() >= 1)
                     Console.WriteLine("Successfully deleted contact!");
                 else
                     Console.WriteLine("ERROR: Couldn't delete contact!");

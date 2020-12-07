@@ -19,9 +19,18 @@ namespace Console_App
     /// </summary>
     public partial class DeleteContactWindow : Window
     {
+        Contact contact;
+
+        ContactHandler contactHandler = new ContactHandler();
         public DeleteContactWindow()
         {
             InitializeComponent();
+        }
+
+        private void Delete_Contact(object sender, RoutedEventArgs e)
+        {
+            contact.Name = nameTextBlock.Text;
+            contactHandler.DeleteContact(contact);
         }
     }
 }

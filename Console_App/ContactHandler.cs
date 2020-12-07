@@ -86,11 +86,11 @@ namespace Console_App {
             {
                 con.Open();
 
-                string query = "DELETE FROM ContactList WHERE Id = @Id";
+                string query = "DELETE FROM ContactList WHERE Name = @Name";
 
                 SqlCommand command = new SqlCommand(query, con);
 
-                command.Parameters.AddWithValue("@Id", contact.Id);
+                command.Parameters.AddWithValue("@Name", contact.Name);
 
                 if (command.ExecuteNonQuery() >= 1)
                     MessageBox.Show("Successfully deleted contact!", "Confirmation", MessageBoxButton.OK);

@@ -8,12 +8,10 @@
         Title="DeleteContactWindow" Height="450" Width="800">
     <Grid>
         <StackPanel Margin="10">
-            <Label Content="Add New Contact Window" 
+            <Label Content="Delete a contact" 
                    FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
-            <TextBlock x:Name="nameTextBlock"/>
-            <TextBlock x:Name="phoneNumberTextBlock"/>
-            <TextBlock x:Name="addressTextBlock"/>
-            <TextBlock x:Name="birthdayTextBlock"/>
+            <TextBox x:Name="nameTextBlock" FontSize="24" Width="510" Style="{StaticResource placeHolder}" Tag="Type the NAME of the contact here to delete it!"/>
+            <Button x:Name="Delete" Content="Delete Contact" Margin="5,20,5,0" Click="Delete_Contact" FontSize="28" Width="500"/>
         </StackPanel>
     </Grid>
 </Window>

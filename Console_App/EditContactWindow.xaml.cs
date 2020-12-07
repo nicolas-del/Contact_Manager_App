@@ -19,6 +19,9 @@ namespace Console_App
     /// </summary>
     public partial class EditContactWindow : Window
     {
+        Contact contact = new Contact();
+        ContactHandler contactHandler = new ContactHandler();
+
         public EditContactWindow()
         {
             InitializeComponent();
@@ -26,7 +29,12 @@ namespace Console_App
 
         private void Update_Contact(object sender, RoutedEventArgs e)
         {
+            contact.Name = nameTextBlock.Text;
+            contact.PhoneNumber = phoneNumberTextBlock.Text;
+            contact.Address = addressTextBlock.Text;
+            contact.Birthday = addressTextBlock.Text;
 
+            contactHandler.EditContact(contact);
         }
     }
 }

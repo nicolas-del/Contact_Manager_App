@@ -19,9 +19,18 @@ namespace Console_App
     /// </summary>
     public partial class ViewContactWindow : Window
     {
-        public ViewContactWindow()
+        Contact contact;
+        public ViewContactWindow(Contact contact)
         {
             InitializeComponent();
+
+            this.contact = contact;
+
+            nameTextBox.Text = contact.Name;
+            phoneNumberTextBox.Text = contact.PhoneNumber;
+            addressTextBox.Text = contact.Address;
+            birthdayTextBox.Text = contact.Birthday;
+
         }
     }
 }

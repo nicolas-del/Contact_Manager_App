@@ -30,19 +30,19 @@ namespace Console_App
 
         private void lvDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            Contact selectContact = (Contact)lvDataBinding.SelectedItem;
+
+            if (selectContact != null)
+            {
+                ViewContactWindow viewWindow = new ViewContactWindow(selectContact);
+                viewWindow.ShowDialog();
+            }
         }
 
         private void AddContact_Button(object sender, RoutedEventArgs e)
         {
             AddContactWindow acw = new AddContactWindow();
             acw.Show();
-        }
-
-        private void ViewContact_Button(object sender, RoutedEventArgs e)
-        {
-            ViewContactWindow vcw = new ViewContactWindow();
-            vcw.Show();
         }
 
         private void EditContact_Button(object sender, RoutedEventArgs e)

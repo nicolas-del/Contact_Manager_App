@@ -10,10 +10,10 @@
         <StackPanel Margin="10">
             <Label Content="Edit Contact Window" 
                    FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
-            <TextBox x:Name="nameTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Type the NAME here!"/>
-            <TextBox x:Name="phoneNumberTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Type the PHONE NUMBER here!"/>
-            <TextBox x:Name="addressTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Type the ADDRESS here!"/>
-            <TextBox x:Name="birthdayTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Type the BIRTHDAY here!"/>
+            <TextBox x:Name="nameTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Modify the NAME here!"/>
+            <TextBox x:Name="phoneNumberTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Modify the PHONE NUMBER here!"/>
+            <TextBox x:Name="addressTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Modify the ADDRESS here!"/>
+            <TextBox x:Name="birthdayTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Modify the BIRTHDAY here!"/>
             <Button x:Name="Update" Content="Update contact" Margin="5,20,5,0" Click="Update_Contact" FontSize="28" Width="500"/>
         </StackPanel>
     </Grid>

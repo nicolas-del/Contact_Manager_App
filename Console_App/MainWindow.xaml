@@ -10,7 +10,6 @@
         <DockPanel>
             <StackPanel DockPanel.Dock="Right">
                 <Button x:Name="AddContact" Content="Add New Contact" Margin="5,20,5,0" Click="AddContact_Button"/>
-                <Button x:Name="ViewContact" Content="View Contact" Margin="5,20,5,0" Click="ViewContact_Button"/>
                 <Button x:Name="EditContact" Content="Edit Contact" Margin="5,20,5,0" Click="EditContact_Button"/>
                 <Button x:Name="DeleteContact" Content="Delete Contact" Margin="5,20,5,0" Click="DeleteContact_Button"/>
             </StackPanel>

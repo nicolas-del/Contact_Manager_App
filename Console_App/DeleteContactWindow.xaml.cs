@@ -19,7 +19,7 @@ namespace Console_App
     /// </summary>
     public partial class DeleteContactWindow : Window
     {
-        Contact contact;
+        Contact contact = new Contact();
 
         ContactHandler contactHandler = new ContactHandler();
         public DeleteContactWindow()

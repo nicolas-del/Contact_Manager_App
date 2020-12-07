@@ -19,7 +19,7 @@ namespace Console_App
     /// </summary>
     public partial class AddContactWindow : Window
     {
-        Contact contact;
+        Contact contact = new Contact();
 
         ContactHandler contactHandler = new ContactHandler();
 

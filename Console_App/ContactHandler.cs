@@ -26,7 +26,6 @@ namespace Console_App {
                 }
                 else 
                     MessageBox.Show("ERROR: Couldn't add new contact!", "Confirmation", MessageBoxButton.OK);
-                
                 con.Close();
             }
         }

@@ -23,5 +23,10 @@ namespace Console_App
         {
             InitializeComponent();
         }
+
+        private void Update_Contact(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

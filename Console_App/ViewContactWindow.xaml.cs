@@ -31,6 +31,7 @@ namespace Console_App
             addressTextBox.Text = contact.Address;
             birthdayTextBox.Text = contact.Birthday;
 
+
         }
     }
 }

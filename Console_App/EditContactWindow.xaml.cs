@@ -32,7 +32,7 @@ namespace Console_App
             contact.Name = nameTextBlock.Text;
             contact.PhoneNumber = phoneNumberTextBlock.Text;
             contact.Address = addressTextBlock.Text;
-            contact.Birthday = addressTextBlock.Text;
+            contact.Birthday = birthdayTextBlock.Text;
 
             contactHandler.EditContact(contact);
         }

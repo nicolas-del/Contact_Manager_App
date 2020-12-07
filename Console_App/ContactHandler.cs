@@ -5,6 +5,7 @@ using System.Windows;
 
 namespace Console_App {
     public class ContactHandler {
+
         string ConString = ConfigurationManager.ConnectionStrings["ContactConn"].ConnectionString;
 
         public void AddContact(Contact contact) {
@@ -19,6 +20,8 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Phone_Number", contact.PhoneNumber);
                 command.Parameters.AddWithValue("@Address", contact.Address);
                 command.Parameters.AddWithValue("@Birthday", contact.Birthday);
+
+                command.ExecuteNonQuery();
 
                 if (command.ExecuteNonQuery() >= 1)
                 {
@@ -60,7 +63,7 @@ namespace Console_App {
             {
                 con.Open();
 
-                string query = "UPDATE ContactList SET Name = @Name, Phone_Number = @Phone_Number, Address = @Address, Birthday = @Birthday WHERE Id = @Id";
+                string query = "UPDATE ContactList SET Name = @Name, Phone_Number = @Phone_Number, Address = @Address, Birthday = @Birthday WHERE Name = @Name";
 
                 SqlCommand command = new SqlCommand(query, con);
 
@@ -69,6 +72,8 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Phone_Number", contact.PhoneNumber);
                 command.Parameters.AddWithValue("@Address", contact.Address);
                 command.Parameters.AddWithValue("@Birthday", contact.Birthday);
+
+                command.ExecuteNonQuery();
 
                 if (command.ExecuteNonQuery() >= 1)
                     MessageBox.Show("Successfully edited contact!", "Confirmation", MessageBoxButton.OK);
@@ -79,7 +84,7 @@ namespace Console_App {
             }
         }
 
-        public void DeleteContact(Contact contact)
+        public void DeleteContact(Contact contact) 
         {
             using (SqlConnection con = new SqlConnection(ConString))
             {
@@ -90,6 +95,8 @@ namespace Console_App {
                 SqlCommand command = new SqlCommand(query, con);
 
                 command.Parameters.AddWithValue("@Name", contact.Name);
+
+                command.ExecuteNonQuery();
 
                 if (command.ExecuteNonQuery() >= 1)
                     MessageBox.Show("Successfully deleted contact!", "Confirmation", MessageBoxButton.OK);

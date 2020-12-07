@@ -19,15 +19,6 @@
                         <WrapPanel>
                             <TextBlock Text="Name: "/>
                             <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
-                            <TextBlock Text=", "/>
-                            <TextBlock Text="Phone Number: "/>
-                            <TextBlock Text="{Binding PhoneNumber}" FontWeight="Bold"/>
-                            <TextBlock Text=", "/>
-                            <TextBlock Text="Address: "/>
-                            <TextBlock Text="{Binding Address}" FontWeight="Bold"/>
-                            <TextBlock Text=", "/>
-                            <TextBlock Text="Birthday: "/>
-                            <TextBlock Text="{Binding Birthday}" FontWeight="Bold"/>
                         </WrapPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

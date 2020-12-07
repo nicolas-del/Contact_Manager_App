@@ -30,7 +30,7 @@ namespace Console_App
 
         private void lvDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
 
         private void AddContact_Button(object sender, RoutedEventArgs e)
@@ -41,17 +41,20 @@ namespace Console_App
 
         private void ViewContact_Button(object sender, RoutedEventArgs e)
         {
-
+            ViewContactWindow vcw = new ViewContactWindow();
+            vcw.Show();
         }
 
         private void EditContact_Button(object sender, RoutedEventArgs e)
         {
-
+            EditContactWindow ecw = new EditContactWindow();
+            ecw.Show();
         }
 
         private void DeleteContact_Button(object sender, RoutedEventArgs e)
         {
-
+            DeleteContactWindow dcw = new DeleteContactWindow();
+            dcw.Show();
         }
     }
 }

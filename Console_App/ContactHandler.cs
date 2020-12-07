@@ -21,16 +21,20 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Birthday", contact.Birthday);
 
                 if (command.ExecuteNonQuery() >= 1)
+                {
                     MessageBox.Show("Successfully added new contact!", "Confirmation", MessageBoxButton.OK);
-                else
-                    MessageBox.Show("ERROR: Couldn't add new contact!", "Confirmation", MessageBoxButton.OK));
-
+                }
+                else 
+                    MessageBox.Show("ERROR: Couldn't add new contact!", "Confirmation", MessageBoxButton.OK);
+                
                 con.Close();
             }
         }
 
-        public void ViewContact(Contact contact) {
-            using (SqlConnection con = new SqlConnection(ConString)) {
+        public void ViewContact(Contact contact) 
+        {
+            using (SqlConnection con = new SqlConnection(ConString)) 
+            {
                 con.Open();
 
                 string query = "SELECT * FROM ContactList";
@@ -51,8 +55,10 @@ namespace Console_App {
             }
         }
 
-        public void EditContact(Contact contact) {
-            using (SqlConnection con = new SqlConnection(ConString)) {
+        public void EditContact(Contact contact)
+        {
+            using (SqlConnection con = new SqlConnection(ConString))
+            {
                 con.Open();
 
                 string query = "UPDATE ContactList SET Name = @Name, Phone_Number = @Phone_Number, Address = @Address, Birthday = @Birthday WHERE Id = @Id";
@@ -66,16 +72,18 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Birthday", contact.Birthday);
 
                 if (command.ExecuteNonQuery() >= 1)
-                    MessageBox.Show("Successfully edited contact!", "Confirmation", MessageBoxButton.OK));
+                    MessageBox.Show("Successfully edited contact!", "Confirmation", MessageBoxButton.OK);
                 else
-                    MessageBox.Show("ERROR: Couldn't edit contact!", "Confirmation", MessageBoxButton.OK));
+                    MessageBox.Show("ERROR: Couldn't edit contact!", "Confirmation", MessageBoxButton.OK);
 
                 con.Close();
             }
         }
 
-        public void DeleteContact(Contact contact) {
-            using (SqlConnection con = new SqlConnection(ConString)) {
+        public void DeleteContact(Contact contact)
+        {
+            using (SqlConnection con = new SqlConnection(ConString))
+            {
                 con.Open();
 
                 string query = "DELETE FROM ContactList WHERE Id = @Id";
@@ -85,10 +93,9 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Id", contact.Id);
 
                 if (command.ExecuteNonQuery() >= 1)
-                    MessageBox.Show("Successfully deleted contact!", "Confirmation", MessageBoxButton.OK));
+                    MessageBox.Show("Successfully deleted contact!", "Confirmation", MessageBoxButton.OK);
                 else
-                    MessageBox.Show("ERROR: Couldn't delete contact!", "Confirmation", MessageBoxButton.OK));
-
+                    MessageBox.Show("ERROR: Couldn't delete contact!", "Confirmation", MessageBoxButton.OK);
                 con.Close();
             }
         }

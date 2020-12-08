@@ -20,7 +20,7 @@ namespace Console_App
     public partial class EditContactWindow : Window
     {
         Contact contact = new Contact();
-        ContactHandler contactHandler = new ContactHandler();
+        ContactHandler contactHandler = ContactHandler.Instance;
 
         public EditContactWindow()
         {

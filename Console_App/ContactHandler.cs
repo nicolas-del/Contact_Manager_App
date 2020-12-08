@@ -1,20 +1,32 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
 using System.Windows;
 
 namespace Console_App {
-    public class ContactHandler 
+
+
+    public sealed class ContactHandler 
     {
-        
 
         string ConString = ConfigurationManager.ConnectionStrings["ContactConn"].ConnectionString;
 
-        MainWindow mainWindow = new MainWindow();
+        ContactHandler() { }
 
-        Contact generalContact = new Contact();
+        static readonly ContactHandler instance = new ContactHandler();
+
+        public static ContactHandler Instance
+        {
+            get { return instance; }
+        }
+
+
+        public ObservableCollection<Contact> ContactList { get; set; }
+
 
         public void AddContact(Contact contact) {
 
@@ -35,15 +47,12 @@ namespace Console_App {
                 }
                 else
                     MessageBox.Show("ERROR: Couldn't add new contact!", "Confirmation", MessageBoxButton.OK);
-                con.Close();
 
-                generalContact = contact;
-
-                mainWindow.DisplayContact(generalContact);
+                ViewAllContact();
             }
         }
 
-        public void ViewContact(Contact contact) {
+        public void ViewSpecificContact(Contact contact) {
             using (SqlConnection con = new SqlConnection(ConString)) {
                 con.Open();
 
@@ -66,6 +75,39 @@ namespace Console_App {
             }
         }
 
+        public List<Contact> ViewAllContact()
+        {
+            List<Contact> list = new List<Contact>();
+
+            using (SqlConnection con = new SqlConnection(ConString))
+            {
+                con.Open();
+
+                string query = "SELECT * FROM ContactList";
+
+                SqlCommand command = new SqlCommand(query, con);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Contact contact = new Contact();
+                        if (Int32.TryParse(reader["Id"].ToString(), out int id))
+                        {
+                            contact.Id = id;
+                        }
+                        contact.Name = reader["Name"].ToString();
+                        contact.PhoneNumber = reader["Phone_Number"].ToString();
+                        contact.Address = reader["Address"].ToString();
+                        contact.Birthday = reader["Birthday"].ToString();
+                        list.Add(contact);
+                    }
+                }
+            }
+            return list;
+        }
+
+
         public void EditContact(Contact contact) {
             using (SqlConnection con = new SqlConnection(ConString)) {
                 con.Open();
@@ -84,8 +126,6 @@ namespace Console_App {
                     MessageBox.Show("Successfully edited contact!", "Confirmation", MessageBoxButton.OK);
                 else
                     MessageBox.Show("ERROR: Couldn't edit contact!", "Confirmation", MessageBoxButton.OK);
-
-                con.Close();
             }
         }
 
@@ -104,7 +144,6 @@ namespace Console_App {
                     MessageBox.Show("Successfully deleted contact!", "Confirmation", MessageBoxButton.OK);
                 else
                     MessageBox.Show("ERROR: Couldn't delete contact!", "Confirmation", MessageBoxButton.OK);
-                con.Close();
             }
         }
 

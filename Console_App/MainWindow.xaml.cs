@@ -24,14 +24,16 @@ namespace Console_App
     public partial class MainWindow : Window
     {
 
-        ObservableCollection<Contact> ContactList = new ObservableCollection<Contact>();
 
-        private readonly List<Contact> listContacts = new List<Contact>();
+        private List<Contact> listContacts = new List<Contact>();
 
-        Contact contact = new Contact();
+        ContactHandler contactHandler = ContactHandler.Instance;
+
         public MainWindow()
         {
             InitializeComponent();
+            listContacts = contactHandler.ViewAllContact();
+            lvDataBinding.ItemsSource = listContacts;
         }
         
         private void lvDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -73,18 +75,6 @@ namespace Console_App
 
         private void ExportCSV_Button(object sender, RoutedEventArgs e) {
 
-        }
-
-
-        public void DisplayContact(Contact contact) 
-        {
-            listContacts.Add(contact);
-
-            foreach (var i in listContacts)
-            {
-                lvDataBinding.Items.Add(i);
-                lvDataBinding.ItemsSource = i;
-            }
         }
     }
 }

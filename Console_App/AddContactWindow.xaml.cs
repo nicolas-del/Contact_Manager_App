@@ -21,7 +21,7 @@ namespace Console_App
     {
         Contact contact = new Contact();
 
-        ContactHandler contactHandler = new ContactHandler();
+        ContactHandler contactHandler = ContactHandler.Instance;
 
         public AddContactWindow()
         {

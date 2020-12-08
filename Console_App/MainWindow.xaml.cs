@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,11 +25,16 @@ namespace Console_App
     {
 
         ObservableCollection<Contact> ContactList = new ObservableCollection<Contact>();
+
+        string ConString = ConfigurationManager.ConnectionStrings["ContactConn"].ConnectionString;
+
+        ContactHandler contactHandler = new ContactHandler();
+
         public MainWindow()
         {
             InitializeComponent();
         }
-
+        
         private void lvDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Contact selectContact = (Contact)lvDataBinding.SelectedItem;

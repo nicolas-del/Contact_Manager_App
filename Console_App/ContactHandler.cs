@@ -4,9 +4,12 @@ using System.Data.SqlClient;
 using System.Windows;
 
 namespace Console_App {
-    public class ContactHandler {
+    public class ContactHandler 
+    {
+        
 
         string ConString = ConfigurationManager.ConnectionStrings["ContactConn"].ConnectionString;
+
 
         public void AddContact(Contact contact) {
             using (SqlConnection con = new SqlConnection(ConString)) {
@@ -44,6 +47,7 @@ namespace Console_App {
                 SqlCommand command = new SqlCommand(query, con);
 
                 using (SqlDataReader reader = command.ExecuteReader()) {
+
                     while (reader.Read()) {
                         if (Int32.TryParse(reader["Id"].ToString(), out int id)) {
                             contact.Id = id;

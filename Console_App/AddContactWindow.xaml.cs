@@ -29,7 +29,7 @@ namespace Console_App
         }
 
         private void Create_Contact(object sender, RoutedEventArgs e)
-        {
+        { 
             contact.Name = nameTextBlock.Text;
             contact.PhoneNumber = phoneNumberTextBlock.Text;
             contact.Address = addressTextBlock.Text;

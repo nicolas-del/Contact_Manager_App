@@ -13,10 +13,5 @@ namespace Console_App
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public string Birthday { get; set; }
-
-        public override string ToString()
-        {
-            return "Name: " + this.Name + ", Phone number: " + this.PhoneNumber + ", Address: " + this.Address + ", Birthday: " + this.Birthday;
-        }
     }
 }

@@ -26,13 +26,14 @@ namespace Console_App
 
         ObservableCollection<Contact> ContactList = new ObservableCollection<Contact>();
 
-        List<Contact> listContacts = new List<Contact>();
-        
+        private readonly List<Contact> listContacts = new List<Contact>();
+
+
         public MainWindow()
         {
             InitializeComponent();
 
-            listContacts.Add(new Contact() { });
+            listContacts.Add(new Contact() { Name = }) ;
 
             lvDataBinding.ItemsSource = listContacts;
         }

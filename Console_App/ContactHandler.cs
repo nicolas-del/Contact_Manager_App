@@ -12,6 +12,7 @@ namespace Console_App {
 
         string ConString = ConfigurationManager.ConnectionStrings["ContactConn"].ConnectionString;
 
+        MainWindow mainWindow = new MainWindow();
 
         public void AddContact(Contact contact) {
             using (SqlConnection con = new SqlConnection(ConString)) {
@@ -32,6 +33,7 @@ namespace Console_App {
                 else
                     MessageBox.Show("ERROR: Couldn't add new contact!", "Confirmation", MessageBoxButton.OK);
                 con.Close();
+
             }
         }
 

@@ -14,7 +14,10 @@ namespace Console_App {
 
         MainWindow mainWindow = new MainWindow();
 
+        Contact generalContact = new Contact();
+
         public void AddContact(Contact contact) {
+
             using (SqlConnection con = new SqlConnection(ConString)) {
                 con.Open();
 
@@ -34,6 +37,9 @@ namespace Console_App {
                     MessageBox.Show("ERROR: Couldn't add new contact!", "Confirmation", MessageBoxButton.OK);
                 con.Close();
 
+                generalContact = contact;
+
+                mainWindow.DisplayContact(generalContact);
             }
         }
 
@@ -82,6 +88,7 @@ namespace Console_App {
                 con.Close();
             }
         }
+
 
         public void DeleteContact(Contact contact) {
             using (SqlConnection con = new SqlConnection(ConString)) {

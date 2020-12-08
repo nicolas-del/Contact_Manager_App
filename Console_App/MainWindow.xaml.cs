@@ -28,14 +28,10 @@ namespace Console_App
 
         private readonly List<Contact> listContacts = new List<Contact>();
 
-
+        Contact contact = new Contact();
         public MainWindow()
         {
             InitializeComponent();
-
-            listContacts.Add(new Contact() { Name = }) ;
-
-            lvDataBinding.ItemsSource = listContacts;
         }
         
         private void lvDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -49,11 +45,13 @@ namespace Console_App
             }
         }
 
+
         private void AddContact_Button(object sender, RoutedEventArgs e)
         {
             AddContactWindow acw = new AddContactWindow();
             acw.Show();
         }
+
 
         private void EditContact_Button(object sender, RoutedEventArgs e)
         {
@@ -61,17 +59,32 @@ namespace Console_App
             ecw.Show();
         }
 
+
         private void DeleteContact_Button(object sender, RoutedEventArgs e)
         {
             DeleteContactWindow dcw = new DeleteContactWindow();
             dcw.Show();
         }
 
+
         private void ImportCSV_Button(object sender, RoutedEventArgs e) {
             
         }
+
         private void ExportCSV_Button(object sender, RoutedEventArgs e) {
 
+        }
+
+
+        public void DisplayContact(Contact contact) 
+        {
+            listContacts.Add(contact);
+
+            foreach (var i in listContacts)
+            {
+                lvDataBinding.Items.Add(i);
+                lvDataBinding.ItemsSource = i;
+            }
         }
     }
 }

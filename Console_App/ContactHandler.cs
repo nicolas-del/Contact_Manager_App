@@ -26,8 +26,6 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Address", contact.Address);
                 command.Parameters.AddWithValue("@Birthday", contact.Birthday);
 
-                command.ExecuteNonQuery();
-
                 if (command.ExecuteNonQuery() >= 1) {
                     MessageBox.Show("Successfully added new contact!", "Confirmation", MessageBoxButton.OK);
                 }
@@ -74,8 +72,6 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Address", contact.Address);
                 command.Parameters.AddWithValue("@Birthday", contact.Birthday);
 
-                command.ExecuteNonQuery();
-
                 if (command.ExecuteNonQuery() >= 1)
                     MessageBox.Show("Successfully edited contact!", "Confirmation", MessageBoxButton.OK);
                 else
@@ -94,8 +90,6 @@ namespace Console_App {
                 SqlCommand command = new SqlCommand(query, con);
 
                 command.Parameters.AddWithValue("@Name", contact.Name);
-
-                command.ExecuteNonQuery();
 
                 if (command.ExecuteNonQuery() >= 1)
                     MessageBox.Show("Successfully deleted contact!", "Confirmation", MessageBoxButton.OK);
@@ -137,7 +131,6 @@ namespace Console_App {
                         }
                     }
                 }
-                command.ExecuteNonQuery();
 
                 if (command.ExecuteNonQuery() >= 1)
                     MessageBox.Show("Successfully added new contact!", "Confirmation", MessageBoxButton.OK);

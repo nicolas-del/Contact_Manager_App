@@ -26,13 +26,15 @@ namespace Console_App
 
         ObservableCollection<Contact> ContactList = new ObservableCollection<Contact>();
 
-        string ConString = ConfigurationManager.ConnectionStrings["ContactConn"].ConnectionString;
-
-        ContactHandler contactHandler = new ContactHandler();
-
+        List<Contact> listContacts = new List<Contact>();
+        
         public MainWindow()
         {
             InitializeComponent();
+
+            listContacts.Add(new Contact() { });
+
+            lvDataBinding.ItemsSource = listContacts;
         }
         
         private void lvDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)

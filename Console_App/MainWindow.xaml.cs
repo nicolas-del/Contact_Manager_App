@@ -56,5 +56,12 @@ namespace Console_App
             DeleteContactWindow dcw = new DeleteContactWindow();
             dcw.Show();
         }
+
+        private void ImportCSV_Button(object sender, RoutedEventArgs e) {
+            
+        }
+        private void ExportCSV_Button(object sender, RoutedEventArgs e) {
+
+        }
     }
 }

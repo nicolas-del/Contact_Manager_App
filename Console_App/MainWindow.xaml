@@ -12,6 +12,9 @@
                 <Button x:Name="AddContact" Content="Add New Contact" Margin="5,20,5,0" Click="AddContact_Button"/>
                 <Button x:Name="EditContact" Content="Edit Contact" Margin="5,20,5,0" Click="EditContact_Button"/>
                 <Button x:Name="DeleteContact" Content="Delete Contact" Margin="5,20,5,0" Click="DeleteContact_Button"/>
+
+                <Button x:Name="ImportCSV" Content="Import CSV" Margin="5,40,5,0" Click="ImportCSV_Button"/>
+                <Button x:Name="ExportCSV" Content="Export CSV" Margin="5,20,5,0" Click="ExportCSV_Button"/>
             </StackPanel>
             <ListView Margin="10" x:Name="lvDataBinding" SelectionMode="Single" SelectionChanged="lvDataBinding_SelectionChanged">
                 <ListView.ItemTemplate>

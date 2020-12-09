@@ -147,9 +147,11 @@ namespace Console_App {
             }
         }
 
-        public void ImportCSV(Contact contact) {
+        public void ImportCSV() {
             using (SqlConnection con = new SqlConnection(ConString)) {
                 con.Open();
+
+                Contact contact = new Contact();
 
                 string query = "INSERT INTO ContactList(Name, Phone_Number, Address, Birthday) VALUES (@Name, @Phone_Number, @Address, @Birthday)";
 

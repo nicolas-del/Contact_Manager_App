@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Console_App"
         mc:Ignorable="d"
-        Title="AddContactWindow" Height="450" Width="800">
+        Title="AddContactWindow" Height="350" Width="500">
     <Grid>
         <StackPanel Margin="10">
             <Label Content="Add New Contact Window" 
                    FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
-            <TextBox x:Name="nameTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Type the NAME here!"/>
-            <TextBox x:Name="phoneNumberTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Type the PHONE NUMBER here!"/>
-            <TextBox x:Name="addressTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Type the ADDRESS here!"/>
-            <TextBox x:Name="birthdayTextBlock" FontSize="24" Width="500" Style="{StaticResource placeHolder}" Tag="Type the BIRTHDAY here!"/>
-            <Button x:Name="Create" Content="Create contact" Margin="5,20,5,0" Click="Create_Contact" FontSize="28" Width="500"/>
+            <TextBox x:Name="nameTextBlock" FontSize="24" Width="400" Style="{StaticResource placeHolder}" Tag="Type the NAME here!"/>
+            <TextBox x:Name="phoneNumberTextBlock" FontSize="24" Width="400" Style="{StaticResource placeHolder}" Tag="Type the PHONE NUMBER here!"/>
+            <TextBox x:Name="addressTextBlock" FontSize="24" Width="400" Style="{StaticResource placeHolder}" Tag="Type the ADDRESS here!"/>
+            <TextBox x:Name="birthdayTextBlock" FontSize="24" Width="400" Style="{StaticResource placeHolder}" Tag="Type the BIRTHDAY here!"/>
+            <Button x:Name="Create" Content="Create contact" Margin="5,20,5,0" Click="Create_Contact" FontSize="28" Width="400"/>
         </StackPanel>
     </Grid>
 </Window>

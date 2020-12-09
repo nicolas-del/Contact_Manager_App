@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Console_App"
         mc:Ignorable="d"
-        Title="EditContactWindow" Height="450" Width="800">
+        Title="EditContactWindow" Height="350" Width="500">
     <Grid>
         <StackPanel Margin="10">
             <Label Content="Edit Contact Window" 
                    FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
-            <TextBox x:Name="nameTextBlock" FontSize="20" Width="500" Style="{StaticResource placeHolder}" Tag="Type the name of the contact you want to change here!"/>
-            <TextBox x:Name="phoneNumberTextBlock" FontSize="20" Width="500" Style="{StaticResource placeHolder}" Tag="Modify the PHONE NUMBER here!"/>
-            <TextBox x:Name="addressTextBlock" FontSize="20" Width="500" Style="{StaticResource placeHolder}" Tag="Modify the ADDRESS here!"/>
-            <TextBox x:Name="birthdayTextBlock" FontSize="20" Width="500" Style="{StaticResource placeHolder}" Tag="Modify the BIRTHDAY here!"/>
-            <Button x:Name="Update" Content="Update contact" Margin="5,20,5,0" Click="Update_Contact" FontSize="28" Width="500"/>
+            <TextBox x:Name="nameTextBlock" FontSize="20" Width="400" Style="{StaticResource placeHolder}" Tag="Type the NAME of the contact here!"/>
+            <TextBox x:Name="phoneNumberTextBlock" FontSize="20" Width="400" Style="{StaticResource placeHolder}" Tag="Modify the PHONE NUMBER here!"/>
+            <TextBox x:Name="addressTextBlock" FontSize="20" Width="400" Style="{StaticResource placeHolder}" Tag="Modify the ADDRESS here!"/>
+            <TextBox x:Name="birthdayTextBlock" FontSize="20" Width="400" Style="{StaticResource placeHolder}" Tag="Modify the BIRTHDAY here!"/>
+            <Button x:Name="Update" Content="Update contact" Margin="5,20,5,0" Click="Update_Contact" FontSize="28" Width="400"/>
         </StackPanel>
     </Grid>
 </Window>

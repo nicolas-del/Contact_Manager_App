@@ -23,8 +23,6 @@ namespace Console_App
     /// </summary>
     public partial class MainWindow : Window
     {
-
-
         private List<Contact> listContacts = new List<Contact>();
 
         ContactHandler contactHandler = ContactHandler.Instance;
@@ -70,7 +68,7 @@ namespace Console_App
 
 
         private void ImportCSV_Button(object sender, RoutedEventArgs e) {
-            
+            contactHandler.ImportCSV();
         }
 
         private void ExportCSV_Button(object sender, RoutedEventArgs e) {

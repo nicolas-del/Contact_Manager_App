@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Console_App"
         mc:Ignorable="d"
-        Title="DeleteContactWindow" Height="450" Width="800">
+        Title="DeleteContactWindow" Height="250" Width="500">
     <Grid>
         <StackPanel Margin="10">
             <Label Content="Delete a contact" 
                    FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
-            <TextBox x:Name="nameTextBlock" FontSize="24" Width="510" Style="{StaticResource placeHolder}" Tag="Type the NAME of the contact here to delete it!"/>
-            <Button x:Name="Delete" Content="Delete Contact" Margin="5,20,5,0" Click="Delete_Contact" FontSize="28" Width="500"/>
+            <TextBox x:Name="nameTextBlock" FontSize="24" Width="400" Style="{StaticResource placeHolder}" Tag="Type the NAME of the contact here!"/>
+            <Button x:Name="Delete" Content="Delete Contact" Margin="5,20,5,0" Click="Delete_Contact" FontSize="28" Width="400"/>
         </StackPanel>
     </Grid>
 </Window>

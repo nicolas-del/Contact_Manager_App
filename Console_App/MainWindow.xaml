@@ -18,12 +18,13 @@
 
                 <Button x:Name="Favorites" Content="Favorites" Margin="10,40,10,0" Click="Favorites_Button"/>
                 <Button x:Name="AddFavorite" Content="Add Favorite" Margin="10,20,10,0" Click="AddFavorite_Button"/>
+                
             </StackPanel>
             <ListView Margin="10" x:Name="lvDataBinding" SelectionMode="Single" SelectionChanged="lvDataBinding_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
-                            <TextBlock Text="Name: "/>
+                            <TextBlock Text="Name: " FontStyle="Italic"/>
                             <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
                         </WrapPanel>
                     </DataTemplate>

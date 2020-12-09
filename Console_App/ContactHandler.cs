@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Windows;
@@ -10,8 +11,7 @@ using System.Windows;
 namespace Console_App {
 
 
-    public sealed class ContactHandler 
-    {
+    public sealed class ContactHandler {
 
         string ConString = ConfigurationManager.ConnectionStrings["ContactConn"].ConnectionString;
 
@@ -19,8 +19,7 @@ namespace Console_App {
 
         static readonly ContactHandler instance = new ContactHandler();
 
-        public static ContactHandler Instance
-        {
+        public static ContactHandler Instance {
             get { return instance; }
         }
 
@@ -75,25 +74,20 @@ namespace Console_App {
             }
         }
 
-        public List<Contact> ViewAllContact()
-        {
+        public List<Contact> ViewAllContact() {
             List<Contact> list = new List<Contact>();
 
-            using (SqlConnection con = new SqlConnection(ConString))
-            {
+            using (SqlConnection con = new SqlConnection(ConString)) {
                 con.Open();
 
                 string query = "SELECT * FROM ContactList";
 
                 SqlCommand command = new SqlCommand(query, con);
 
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
+                using (SqlDataReader reader = command.ExecuteReader()) {
+                    while (reader.Read()) {
                         Contact contact = new Contact();
-                        if (Int32.TryParse(reader["Id"].ToString(), out int id))
-                        {
+                        if (Int32.TryParse(reader["Id"].ToString(), out int id)) {
                             contact.Id = id;
                         }
                         contact.Name = reader["Name"].ToString();
@@ -157,11 +151,11 @@ namespace Console_App {
 
                 SqlCommand command = new SqlCommand(query, con);
 
-                OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                openFileDialog1.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "CSV files (*.csv)|*.csv";
 
-                if (openFileDialog1.ShowDialog() == true) {
-                    StreamReader reader = new StreamReader(File.OpenRead(openFileDialog1.FileName));
+                if (openFileDialog.ShowDialog() == true) {
+                    StreamReader reader = new StreamReader(File.OpenRead(openFileDialog.FileName));
 
                     while (!reader.EndOfStream) {
                         string line = reader.ReadLine();
@@ -186,8 +180,51 @@ namespace Console_App {
                     MessageBox.Show("Successfully added new contact!", "Confirmation", MessageBoxButton.OK);
                 else
                     MessageBox.Show("ERROR: Couldn't add new contact!", "Confirmation", MessageBoxButton.OK);
+            }
+        }
 
-                con.Close();
+        public void ExportCSV() {
+            using (SqlConnection con = new SqlConnection(ConString)) {
+                con.Open();
+
+                Contact contact = new Contact();
+
+                string query = "SELECT Name, Phone_Number, Address, Birthday FROM ContactList";
+
+                SqlCommand command = new SqlCommand(query, con);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+
+                if (saveFileDialog.ShowDialog() == true) {
+                    List<string> lines = new List<string>();
+                    string headerLine = "";
+
+                    if (reader.Read()) {
+                        string[] columns = new string[reader.FieldCount];
+                        for (int i = 0; i < reader.FieldCount; i++)
+                            columns[i] = reader.GetName(i);
+                        headerLine = string.Join(",", columns);
+                        lines.Add(headerLine);
+                    }
+
+                    while (reader.Read()) {
+                        object[] values = new object[reader.FieldCount];
+                        reader.GetValues(values);
+                        lines.Add(string.Join(",", values));
+                    }
+
+                    File.WriteAllLines(saveFileDialog.FileName, lines);
+
+                    reader.Close();
+
+                    if (command.ExecuteNonQuery() >= 1)
+                        MessageBox.Show("Successfully exported contact list!", "Confirmation", MessageBoxButton.OK);
+                    else
+                        MessageBox.Show("ERROR: Couldn't export contact list!", "Confirmation", MessageBoxButton.OK);
+                }
             }
         }
 

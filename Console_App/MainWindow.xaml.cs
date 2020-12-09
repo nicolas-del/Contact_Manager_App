@@ -72,6 +72,14 @@ namespace Console_App
         }
 
         private void ExportCSV_Button(object sender, RoutedEventArgs e) {
+            contactHandler.ExportCSV();
+        }
+
+        public void Favorites_Button(object sender, RoutedEventArgs e) {
+
+        }
+
+        public void AddFavorite_Button(object sender, RoutedEventArgs e) {
 
         }
     }

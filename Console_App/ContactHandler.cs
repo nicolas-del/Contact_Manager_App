@@ -148,6 +148,7 @@ namespace Console_App {
         }
 
         public void ImportCSV() {
+
             using (SqlConnection con = new SqlConnection(ConString)) {
                 con.Open();
 

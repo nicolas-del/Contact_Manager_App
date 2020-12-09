@@ -74,5 +74,15 @@ namespace Console_App
         private void ExportCSV_Button(object sender, RoutedEventArgs e) {
 
         }
+
+        private void Favorites_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddFavorite_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

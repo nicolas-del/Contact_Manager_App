@@ -5,15 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Console_App"
         mc:Ignorable="d"
-        Title="ViewContactWindow" Height="300" Width="500">
+        Title="ViewContactWindow" Height="300" Width="600">
     <Grid>
         <StackPanel Margin="10">
             <Label Content="View Contact Window" 
                    FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
-            <TextBox x:Name="nameTextBox" FontSize="24" Width="400"/>
-            <TextBox x:Name="phoneNumberTextBox" FontSize="24" Width="400"/>
-            <TextBox x:Name="addressTextBox" FontSize="24" Width="400"/>
-            <TextBox x:Name="birthdayTextBox" FontSize="24" Width="400"/>
+            <WrapPanel>
+                <TextBlock Text="Name" FontSize="12" Width="90" FontWeight="Bold" TextAlignment="Center"/>
+                <TextBox x:Name="nameTextBox" FontSize="24" Width="400"/>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Phone Number" FontSize="12" Width="90" FontWeight="Bold" TextAlignment="Center"/>
+                <TextBox x:Name="phoneNumberTextBox" FontSize="24" Width="400"/>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Address" FontSize="12" Width="90" FontWeight="Bold" TextAlignment="Center"/>
+                <TextBox x:Name="addressTextBox" FontSize="24" Width="400"/>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Birthday" FontSize="12" Width="90" FontWeight="Bold" TextAlignment="Center"/>
+                <TextBox x:Name="birthdayTextBox" FontSize="24" Width="400"/>
+            </WrapPanel>
         </StackPanel>
     </Grid>
 </Window>

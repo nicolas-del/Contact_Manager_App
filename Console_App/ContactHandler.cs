@@ -228,6 +228,36 @@ namespace Console_App {
                 }
             }
         }
+        public void SearchBar()
+        {
+            List<Contact> list = new List<Contact>();
 
+            using (SqlConnection con = new SqlConnection(ConString))
+            {
+                con.Open();
+
+                Contact contact = new Contact();
+
+                string query = "SELECT Name, Phone_Number, Address, Birthday FROM ContactList";
+
+                SqlCommand command = new SqlCommand(query, con);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        if (Int32.TryParse(reader["Name"].ToString(), out int name))
+                        {
+                            contact.Name = name.ToString();
+                        }
+                        contact.Name = reader["Name"].ToString();
+                        contact.PhoneNumber = reader["Phone_Number"].ToString();
+                        contact.Address = reader["Address"].ToString();
+                        contact.Birthday = reader["Birthday"].ToString();
+                    }
+                }
+        }
     }
+  }
 }

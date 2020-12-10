@@ -45,13 +45,11 @@ namespace Console_App
             }
         }
 
-
         private void AddContact_Button(object sender, RoutedEventArgs e)
         {
             AddContactWindow acw = new AddContactWindow();
             acw.Show();
         }
-
 
         private void EditContact_Button(object sender, RoutedEventArgs e)
         {
@@ -59,13 +57,11 @@ namespace Console_App
             ecw.Show();
         }
 
-
         private void DeleteContact_Button(object sender, RoutedEventArgs e)
         {
             DeleteContactWindow dcw = new DeleteContactWindow();
             dcw.Show();
         }
-
 
         private void ImportCSV_Button(object sender, RoutedEventArgs e) {
             contactHandler.ImportCSV();
@@ -75,22 +71,9 @@ namespace Console_App
             contactHandler.ExportCSV();
         }
 
-        public void Favorites_Button(object sender, RoutedEventArgs e) {
-
-        }
-
-        public void AddFavorite_Button(object sender, RoutedEventArgs e) {
-
-        }
-
-        private void Favorites_Button(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddFavorite_Button(object sender, RoutedEventArgs e)
-        {
-
+        public void ReloadWindow_Button(object sender, RoutedEventArgs e) {
+            MainWindow mw = new MainWindow();
+            mw.Show();
         }
     }
 }

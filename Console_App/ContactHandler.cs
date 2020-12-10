@@ -3,13 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Windows;
 
 namespace Console_App {
-
 
     public sealed class ContactHandler {
 
@@ -23,9 +21,7 @@ namespace Console_App {
             get { return instance; }
         }
 
-
         public ObservableCollection<Contact> ContactList { get; set; }
-
 
         public void AddContact(Contact contact) {
 
@@ -41,9 +37,8 @@ namespace Console_App {
                 command.Parameters.AddWithValue("@Address", contact.Address);
                 command.Parameters.AddWithValue("@Birthday", contact.Birthday);
 
-                if (command.ExecuteNonQuery() >= 1) {
+                if (command.ExecuteNonQuery() >= 1)
                     MessageBox.Show("Successfully added new contact!", "Confirmation", MessageBoxButton.OK);
-                }
                 else
                     MessageBox.Show("ERROR: Couldn't add new contact!", "Confirmation", MessageBoxButton.OK);
 
@@ -101,7 +96,6 @@ namespace Console_App {
             return list;
         }
 
-
         public void EditContact(Contact contact) {
             using (SqlConnection con = new SqlConnection(ConString)) {
                 con.Open();
@@ -123,7 +117,6 @@ namespace Console_App {
             }
         }
 
-
         public void DeleteContact(Contact contact) {
             using (SqlConnection con = new SqlConnection(ConString)) {
                 con.Open();
@@ -142,15 +135,10 @@ namespace Console_App {
         }
 
         public void ImportCSV() {
-
             using (SqlConnection con = new SqlConnection(ConString)) {
                 con.Open();
 
-                Contact contact = new Contact();
-
-                string query = "INSERT INTO ContactList(Name, Phone_Number, Address, Birthday) VALUES (@Name, @Phone_Number, @Address, @Birthday)";
-
-                SqlCommand command = new SqlCommand(query, con);
+                int confirmation = 0;
 
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Filter = "CSV files (*.csv)|*.csv";
@@ -158,73 +146,62 @@ namespace Console_App {
                 if (openFileDialog.ShowDialog() == true) {
                     StreamReader reader = new StreamReader(File.OpenRead(openFileDialog.FileName));
 
-                    while (!reader.EndOfStream) {
-                        string line = reader.ReadLine();
+                    for (int i = 0; i < openFileDialog.FileName.Length; i++) {
+                        while (!reader.EndOfStream) {
+                            string line = reader.ReadLine();
 
-                        if (!String.IsNullOrWhiteSpace(line)) {
-                            string[] values = line.Split(',');
+                            Contact contact = new Contact();
 
-                            contact.Name = values[0];
-                            contact.PhoneNumber = values[1];
-                            contact.Address = values[2];
-                            contact.Birthday = values[3];
+                            string query = "INSERT INTO ContactList(Name, Phone_Number, Address, Birthday) VALUES (@Name, @Phone_Number, @Address, @Birthday)";
 
-                            command.Parameters.AddWithValue("@Name", contact.Name);
-                            command.Parameters.AddWithValue("@Phone_Number", contact.PhoneNumber);
-                            command.Parameters.AddWithValue("@Address", contact.Address);
-                            command.Parameters.AddWithValue("@Birthday", contact.Birthday);
+                            SqlCommand command = new SqlCommand(query, con);
+
+                            if (!string.IsNullOrWhiteSpace(line)) {
+                                string[] values = line.Split(',');
+
+                                contact.Name = values[0];
+                                contact.PhoneNumber = values[1];
+                                contact.Address = values[2];
+                                contact.Birthday = values[3];
+
+                                command.Parameters.AddWithValue("@Name", contact.Name);
+                                command.Parameters.AddWithValue("@Phone_Number", contact.PhoneNumber);
+                                command.Parameters.AddWithValue("@Address", contact.Address);
+                                command.Parameters.AddWithValue("@Birthday", contact.Birthday);
+
+                                if (command.ExecuteNonQuery() >= 1)
+                                    confirmation++;
+                            }
                         }
                     }
                 }
 
-                if (command.ExecuteNonQuery() >= 1)
+                if (confirmation >= 1)
                     MessageBox.Show("Successfully added new contact!", "Confirmation", MessageBoxButton.OK);
                 else
                     MessageBox.Show("ERROR: Couldn't add new contact!", "Confirmation", MessageBoxButton.OK);
             }
         }
 
+        private List<Contact> listContacts = new List<Contact>();
         public void ExportCSV() {
-            using (SqlConnection con = new SqlConnection(ConString)) {
-                con.Open();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
 
-                Contact contact = new Contact();
+            listContacts = ViewAllContact();
+            List<string> list = new List<string>();
 
-                string query = "SELECT Name, Phone_Number, Address, Birthday FROM ContactList";
+            if (saveFileDialog.ShowDialog() == true) {
+                try {
+                    foreach (var c in listContacts)
+                        list.Add(c.Name + "," + c.PhoneNumber + "," + c.Address + "," + c.Birthday);
 
-                SqlCommand command = new SqlCommand(query, con);
+                    File.WriteAllLines(saveFileDialog.FileName, list);
 
-                SqlDataReader reader = command.ExecuteReader();
-
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
-
-                if (saveFileDialog.ShowDialog() == true) {
-                    List<string> lines = new List<string>();
-                    string headerLine = "";
-
-                    if (reader.Read()) {
-                        string[] columns = new string[reader.FieldCount];
-                        for (int i = 0; i < reader.FieldCount; i++)
-                            columns[i] = reader.GetName(i);
-                        headerLine = string.Join(",", columns);
-                        lines.Add(headerLine);
-                    }
-
-                    while (reader.Read()) {
-                        object[] values = new object[reader.FieldCount];
-                        reader.GetValues(values);
-                        lines.Add(string.Join(",", values));
-                    }
-
-                    File.WriteAllLines(saveFileDialog.FileName, lines);
-
-                    reader.Close();
-
-                    if (command.ExecuteNonQuery() >= 1)
-                        MessageBox.Show("Successfully exported contact list!", "Confirmation", MessageBoxButton.OK);
-                    else
-                        MessageBox.Show("ERROR: Couldn't export contact list!", "Confirmation", MessageBoxButton.OK);
+                    MessageBox.Show("Successfully exported contact list!", "Confirmation", MessageBoxButton.OK);
+                }
+                catch {
+                    MessageBox.Show("ERROR: Couldn't export contact list!", "Confirmation", MessageBoxButton.OK);
                 }
             }
         }

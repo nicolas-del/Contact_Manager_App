@@ -31,6 +31,8 @@ namespace Console_App
         {
             InitializeComponent();
             listContacts = contactHandler.ViewAllContact();
+
+
             lvDataBinding.ItemsSource = listContacts;
         }
         
@@ -80,16 +82,6 @@ namespace Console_App
         }
 
         public void AddFavorite_Button(object sender, RoutedEventArgs e) {
-
-        }
-
-        private void Favorites_Button(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddFavorite_Button(object sender, RoutedEventArgs e)
-        {
 
         }
     }

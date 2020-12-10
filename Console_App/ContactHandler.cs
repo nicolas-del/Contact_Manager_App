@@ -23,12 +23,16 @@ namespace Console_App {
             get { return instance; }
         }
 
+        Contact contactInstance = new Contact();
 
-        public ObservableCollection<Contact> ContactList { get; set; }
+        public Contact Contact { get; set; }
 
+        public List<Contact> generalList = new List<Contact>();
 
-        public void AddContact(Contact contact) {
-
+        public void AddContact(Contact contact)
+        {
+            contactInstance = contact;
+            Contact = contactInstance;
             using (SqlConnection con = new SqlConnection(ConString)) {
                 con.Open();
 
@@ -46,10 +50,112 @@ namespace Console_App {
                 }
                 else
                     MessageBox.Show("ERROR: Couldn't add new contact!", "Confirmation", MessageBoxButton.OK);
-
-                ViewAllContact();
             }
         }
+
+        public void EditContact(Contact contact)
+        {
+            contactInstance = contact;
+            Contact = contactInstance;
+            using (SqlConnection con = new SqlConnection(ConString))
+            {
+                con.Open();
+
+                string query = "UPDATE ContactList SET Name = @Name, Phone_Number = @Phone_Number, Address = @Address, Birthday = @Birthday WHERE Name = @Name";
+
+                SqlCommand command = new SqlCommand(query, con);
+
+                command.Parameters.AddWithValue("@Id", contact.Id);
+                command.Parameters.AddWithValue("@Name", contact.Name);
+                command.Parameters.AddWithValue("@Phone_Number", contact.PhoneNumber);
+                command.Parameters.AddWithValue("@Address", contact.Address);
+                command.Parameters.AddWithValue("@Birthday", contact.Birthday);
+
+                if (command.ExecuteNonQuery() >= 1)
+                    MessageBox.Show("Successfully edited contact!", "Confirmation", MessageBoxButton.OK);
+                else
+                    MessageBox.Show("ERROR: Couldn't edit contact!", "Confirmation", MessageBoxButton.OK);
+            }
+        }
+
+
+        public void DeleteContact(Contact contact)
+        {
+            contactInstance = contact;
+            Contact = contactInstance;
+            using (SqlConnection con = new SqlConnection(ConString))
+            {
+                con.Open();
+
+                string query = "DELETE FROM ContactList WHERE Name = @Name";
+
+                SqlCommand command = new SqlCommand(query, con);
+
+                command.Parameters.AddWithValue("@Name", contact.Name);
+
+                if (command.ExecuteNonQuery() >= 1)
+                    MessageBox.Show("Successfully deleted contact!", "Confirmation", MessageBoxButton.OK);
+                else
+                    MessageBox.Show("ERROR: Couldn't delete contact!", "Confirmation", MessageBoxButton.OK);
+            }
+        }
+
+        public List<Contact> UpdateListContact() 
+        {
+            using (SqlConnection con = new SqlConnection(ConString)) 
+            {
+                con.Open();
+
+                string query = "SELECT * FROM ContactList";
+                SqlCommand command = new SqlCommand(query, con);
+
+                using (SqlDataReader reader = command.ExecuteReader()) 
+                {
+                    while (reader.Read()) 
+                    {
+                        Contact.Name = reader["Name"].ToString();
+                        Contact.PhoneNumber = reader["Phone_Number"].ToString();
+                        Contact.Address = reader["Address"].ToString();
+                        Contact.Birthday= reader["Birthday"].ToString();
+                        generalList.Add(Contact);
+                    }
+                }
+            }
+            return generalList;
+        }
+
+
+        public List<Contact> ViewAllContact()
+        {
+
+            using (SqlConnection con = new SqlConnection(ConString))
+            {
+                con.Open();
+
+                string query = "SELECT * FROM ContactList";
+
+                SqlCommand command = new SqlCommand(query, con);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Contact contact = new Contact();
+                        if (Int32.TryParse(reader["Id"].ToString(), out int id))
+                        {
+                            contact.Id = id;
+                        }
+                        contact.Name = reader["Name"].ToString();
+                        contact.PhoneNumber = reader["Phone_Number"].ToString();
+                        contact.Address = reader["Address"].ToString();
+                        contact.Birthday = reader["Birthday"].ToString();
+                        generalList.Add(contact);
+                    }
+                }
+            }
+            return generalList;
+        }
+
 
         public void ViewSpecificContact(Contact contact) {
             using (SqlConnection con = new SqlConnection(ConString)) {
@@ -71,73 +177,6 @@ namespace Console_App {
                         contact.Birthday = reader["Birthday"].ToString();
                     }
                 }
-            }
-        }
-
-        public List<Contact> ViewAllContact() {
-            List<Contact> list = new List<Contact>();
-
-            using (SqlConnection con = new SqlConnection(ConString)) {
-                con.Open();
-
-                string query = "SELECT * FROM ContactList";
-
-                SqlCommand command = new SqlCommand(query, con);
-
-                using (SqlDataReader reader = command.ExecuteReader()) {
-                    while (reader.Read()) {
-                        Contact contact = new Contact();
-                        if (Int32.TryParse(reader["Id"].ToString(), out int id)) {
-                            contact.Id = id;
-                        }
-                        contact.Name = reader["Name"].ToString();
-                        contact.PhoneNumber = reader["Phone_Number"].ToString();
-                        contact.Address = reader["Address"].ToString();
-                        contact.Birthday = reader["Birthday"].ToString();
-                        list.Add(contact);
-                    }
-                }
-            }
-            return list;
-        }
-
-
-        public void EditContact(Contact contact) {
-            using (SqlConnection con = new SqlConnection(ConString)) {
-                con.Open();
-
-                string query = "UPDATE ContactList SET Name = @Name, Phone_Number = @Phone_Number, Address = @Address, Birthday = @Birthday WHERE Name = @Name";
-
-                SqlCommand command = new SqlCommand(query, con);
-
-                command.Parameters.AddWithValue("@Id", contact.Id);
-                command.Parameters.AddWithValue("@Name", contact.Name);
-                command.Parameters.AddWithValue("@Phone_Number", contact.PhoneNumber);
-                command.Parameters.AddWithValue("@Address", contact.Address);
-                command.Parameters.AddWithValue("@Birthday", contact.Birthday);
-
-                if (command.ExecuteNonQuery() >= 1)
-                    MessageBox.Show("Successfully edited contact!", "Confirmation", MessageBoxButton.OK);
-                else
-                    MessageBox.Show("ERROR: Couldn't edit contact!", "Confirmation", MessageBoxButton.OK);
-            }
-        }
-
-
-        public void DeleteContact(Contact contact) {
-            using (SqlConnection con = new SqlConnection(ConString)) {
-                con.Open();
-
-                string query = "DELETE FROM ContactList WHERE Name = @Name";
-
-                SqlCommand command = new SqlCommand(query, con);
-
-                command.Parameters.AddWithValue("@Name", contact.Name);
-
-                if (command.ExecuteNonQuery() >= 1)
-                    MessageBox.Show("Successfully deleted contact!", "Confirmation", MessageBoxButton.OK);
-                else
-                    MessageBox.Show("ERROR: Couldn't delete contact!", "Confirmation", MessageBoxButton.OK);
             }
         }
 

@@ -5,27 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Console_App"
         mc:Ignorable="d"
-        Title="MainWindow" Height="370" Width="500">
+        Title="MainWindow" Height="350" Width="550">
     <Grid>
         <DockPanel>
             <StackPanel DockPanel.Dock="Right">
-                <Button x:Name="AddContact" Content="Add New Contact" Margin="10,20,10,0" Click="AddContact_Button"/>
-                <Button x:Name="EditContact" Content="Edit Contact" Margin="10,20,10,0" Click="EditContact_Button"/>
-                <Button x:Name="DeleteContact" Content="Delete Contact" Margin="10,20,10,0" Click="DeleteContact_Button"/>
+                <StackPanel Orientation="Horizontal" Margin="10,11,10,0">
+                    <TextBox x:Name="SearchBar" FontSize="18" Width="150" Style="{StaticResource placeHolder}" Tag="Search by name..."/>
+                <Button Name="SearchButton" Click="Search_Button">
+                    <Image Source="images/search.png" Width="25" Margin="3"/>
+                </Button>
+                </StackPanel>
 
-                <Button x:Name="ImportCSV" Content="Import CSV" Margin="10,40,10,0" Click="ImportCSV_Button"/>
-                <Button x:Name="ExportCSV" Content="Export CSV" Margin="10,20,10,0" Click="ExportCSV_Button"/>
+                <Button x:Name="AddContact" Content="Add New Contact" FontWeight="Bold" FontSize="14" Height="25" Margin="10,20,10,0" Click="AddContact_Button"/>
+                <Button x:Name="EditContact" Content="Edit Contact" FontSize="14" FontWeight="Bold" Height="25" Margin="10,10,10,0" Click="EditContact_Button"/>
+                <Button x:Name="DeleteContact" Content="Delete Contact" FontSize="14" FontWeight="Bold" Height="25" Margin="10,10,10,0" Click="DeleteContact_Button"/>
 
-                <Button x:Name="Refresh" Content="Refresh" Margin="10,40,10,0" Click="Refresh_Button"/>
+                <Button x:Name="ImportCSV" Content="Import CSV" FontSize="14" FontWeight="Bold" Height="25" Margin="10,20,10,0" Click="ImportCSV_Button"/>
+                <Button x:Name="ExportCSV" Content="Export CSV" FontSize="14" FontWeight="Bold" Height="25" Margin="10,10,10,0" Click="ExportCSV_Button"/>
+
+                <Button x:Name="Refresh" Content="Refresh" Margin="10,20,10,0" FontSize="20" FontWeight="Bold" Height="40" Click="Refresh_Button"/>
             </StackPanel>
-            <ListView Margin="10" x:Name="lvDataBinding" SelectionMode="Single" SelectionChanged="lvDataBinding_SelectionChanged">
+            <ListView Margin="10,10,0,10" x:Name="lvDataBinding" SelectionMode="Single" SelectionChanged="lvDataBinding_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
-                            <TextBlock Text="Name: " FontStyle="Italic"/>
-                            <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
-                            <TextBlock Text=", Telephone Number: "/>
-                            <TextBlock Text="{Binding PhoneNumber}" FontWeight="Bold"/>
+                            <TextBlock Text=" Number: " FontStyle="Italic" FontSize="14"/>
+                            <TextBlock Text="{Binding PhoneNumber}" FontSize="14" FontWeight="Bold"/>
+                            <TextBlock Text=" - Name: " FontStyle="Italic" FontSize="14"/>
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14"/>
                         </WrapPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

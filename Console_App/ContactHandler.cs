@@ -93,7 +93,7 @@ namespace Console_App {
                     }
                 }
             }
-                return list;
+            return list;
         }
 
         public void EditContact(Contact contact) {
@@ -205,12 +205,10 @@ namespace Console_App {
                 }
             }
         }
-        public void SearchBar()
-        {
+        public void SearchBar() {
             List<Contact> list = new List<Contact>();
 
-            using (SqlConnection con = new SqlConnection(ConString))
-            {
+            using (SqlConnection con = new SqlConnection(ConString)) {
                 con.Open();
 
                 Contact contact = new Contact();
@@ -219,13 +217,10 @@ namespace Console_App {
 
                 SqlCommand command = new SqlCommand(query, con);
 
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
+                using (SqlDataReader reader = command.ExecuteReader()) {
 
-                    while (reader.Read())
-                    {
-                        if (Int32.TryParse(reader["Name"].ToString(), out int name))
-                        {
+                    while (reader.Read()) {
+                        if (Int32.TryParse(reader["Name"].ToString(), out int name)) {
                             contact.Name = name.ToString();
                         }
                         contact.Name = reader["Name"].ToString();
@@ -234,7 +229,7 @@ namespace Console_App {
                         contact.Birthday = reader["Birthday"].ToString();
                     }
                 }
+            }
         }
     }
-  }
 }

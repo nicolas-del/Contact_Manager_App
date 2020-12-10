@@ -75,5 +75,9 @@ namespace Console_App
             listContacts = contactHandler.ViewAllContact();
             lvDataBinding.ItemsSource = listContacts;
         }
+
+        public void Search_Button(object sender, RoutedEventArgs e) {
+
+        }
     }
 }

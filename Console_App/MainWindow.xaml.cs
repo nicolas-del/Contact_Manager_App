@@ -72,8 +72,8 @@ namespace Console_App
         }
 
         public void ReloadWindow_Button(object sender, RoutedEventArgs e) {
-            MainWindow mw = new MainWindow();
-            mw.Show();
+            listContacts = contactHandler.ViewAllContact();
+            lvDataBinding.ItemsSource = listContacts;
         }
     }
 }

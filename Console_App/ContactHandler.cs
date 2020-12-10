@@ -93,7 +93,7 @@ namespace Console_App {
                     }
                 }
             }
-            return list;
+                return list;
         }
 
         public void EditContact(Contact contact) {

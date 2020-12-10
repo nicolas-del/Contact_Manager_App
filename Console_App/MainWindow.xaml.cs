@@ -71,7 +71,7 @@ namespace Console_App
             contactHandler.ExportCSV();
         }
 
-        public void ReloadWindow_Button(object sender, RoutedEventArgs e) {
+        public void Refresh_Button(object sender, RoutedEventArgs e) {
             listContacts = contactHandler.ViewAllContact();
             lvDataBinding.ItemsSource = listContacts;
         }

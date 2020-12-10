@@ -31,8 +31,6 @@ namespace Console_App
         {
             InitializeComponent();
             listContacts = contactHandler.ViewAllContact();
-
-
             lvDataBinding.ItemsSource = listContacts;
         }
         

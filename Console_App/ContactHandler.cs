@@ -221,7 +221,10 @@ namespace Console_App {
                         list.Add(contact);
                     }
                 }
-            } catch {
+                if (list.Count == 0)
+                    list = listContacts;
+            }
+            catch {
                 MessageBox.Show("ERROR!");
             }
             return list;

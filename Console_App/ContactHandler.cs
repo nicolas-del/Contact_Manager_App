@@ -205,31 +205,26 @@ namespace Console_App {
                 }
             }
         }
-        public void SearchBar() {
+        public List<Contact> SearchBar(string name) {
+            listContacts = ViewAllContact();
             List<Contact> list = new List<Contact>();
+            Contact contact = new Contact();
 
-            using (SqlConnection con = new SqlConnection(ConString)) {
-                con.Open();
-
-                Contact contact = new Contact();
-
-                string query = "SELECT Name, Phone_Number, Address, Birthday FROM ContactList";
-
-                SqlCommand command = new SqlCommand(query, con);
-
-                using (SqlDataReader reader = command.ExecuteReader()) {
-
-                    while (reader.Read()) {
-                        if (Int32.TryParse(reader["Name"].ToString(), out int name)) {
-                            contact.Name = name.ToString();
-                        }
-                        contact.Name = reader["Name"].ToString();
-                        contact.PhoneNumber = reader["Phone_Number"].ToString();
-                        contact.Address = reader["Address"].ToString();
-                        contact.Birthday = reader["Birthday"].ToString();
+            try {
+                foreach (var c in listContacts) {
+                    if (c.Name.ToLower().Equals(name.ToLower())) {
+                        contact.Id = c.Id;
+                        contact.Name = c.Name;
+                        contact.PhoneNumber = c.PhoneNumber;
+                        contact.Address = c.Address;
+                        contact.Birthday = c.Birthday;
+                        list.Add(contact);
                     }
                 }
+            } catch {
+                MessageBox.Show("ERROR!");
             }
+            return list;
         }
     }
 }

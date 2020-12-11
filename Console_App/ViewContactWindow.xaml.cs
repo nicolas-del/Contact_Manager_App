@@ -30,8 +30,6 @@ namespace Console_App
             phoneNumberTextBox.Text = contact.PhoneNumber;
             addressTextBox.Text = contact.Address;
             birthdayTextBox.Text = contact.Birthday;
-
-
         }
     }
 }

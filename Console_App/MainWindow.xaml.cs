@@ -77,7 +77,8 @@ namespace Console_App
         }
 
         public void Search_Button(object sender, RoutedEventArgs e) {
-
+            listContacts = contactHandler.SearchBar(SearchText.Text);
+            lvDataBinding.ItemsSource = listContacts;
         }
     }
 }

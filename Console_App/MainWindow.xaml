@@ -10,7 +10,7 @@
         <DockPanel>
             <StackPanel DockPanel.Dock="Right">
                 <StackPanel Orientation="Horizontal" Margin="10,11,10,0">
-                    <TextBox x:Name="SearchBar" FontSize="18" Width="150" Style="{StaticResource placeHolder}" Tag="Search by name..."/>
+                    <TextBox x:Name="SearchText" FontSize="18" Width="150" Style="{StaticResource placeHolder}" Tag="Search by name..."/>
                 <Button Name="SearchButton" Click="Search_Button">
                     <Image Source="images/search.png" Width="25" Margin="3"/>
                 </Button>

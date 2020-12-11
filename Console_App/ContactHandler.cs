@@ -23,29 +23,6 @@ namespace Console_App {
 
         public ObservableCollection<Contact> ContactList { get; set; }
 
-        public void AddContact(Contact contact) {
-
-            using (SqlConnection con = new SqlConnection(ConString)) {
-                con.Open();
-
-                string query = "INSERT INTO ContactList(Name, Phone_Number, Address, Birthday) VALUES (@Name, @Phone_Number, @Address, @Birthday)";
-
-                SqlCommand command = new SqlCommand(query, con);
-
-                command.Parameters.AddWithValue("@Name", contact.Name);
-                command.Parameters.AddWithValue("@Phone_Number", contact.PhoneNumber);
-                command.Parameters.AddWithValue("@Address", contact.Address);
-                command.Parameters.AddWithValue("@Birthday", contact.Birthday);
-
-                if (command.ExecuteNonQuery() >= 1)
-                    MessageBox.Show("Successfully added new contact!", "Confirmation", MessageBoxButton.OK);
-                else
-                    MessageBox.Show("ERROR: Couldn't add new contact!", "Confirmation", MessageBoxButton.OK);
-
-                ViewAllContact();
-            }
-        }
-
         public void ViewSpecificContact(Contact contact) {
             using (SqlConnection con = new SqlConnection(ConString)) {
                 con.Open();
@@ -94,6 +71,26 @@ namespace Console_App {
                 }
             }
             return list;
+        }
+
+        public void AddContact(Contact contact) {
+            using (SqlConnection con = new SqlConnection(ConString)) {
+                con.Open();
+
+                string query = "INSERT INTO ContactList(Name, Phone_Number, Address, Birthday) VALUES (@Name, @Phone_Number, @Address, @Birthday)";
+
+                SqlCommand command = new SqlCommand(query, con);
+
+                command.Parameters.AddWithValue("@Name", contact.Name);
+                command.Parameters.AddWithValue("@Phone_Number", contact.PhoneNumber);
+                command.Parameters.AddWithValue("@Address", contact.Address);
+                command.Parameters.AddWithValue("@Birthday", contact.Birthday);
+
+                if (command.ExecuteNonQuery() >= 1)
+                    MessageBox.Show("Successfully added new contact!", "Confirmation", MessageBoxButton.OK);
+                else
+                    MessageBox.Show("ERROR: Couldn't add new contact!", "Confirmation", MessageBoxButton.OK);
+            }
         }
 
         public void EditContact(Contact contact) {
